@@ -138,8 +138,8 @@ function createHeader() {
   return (
     <div className="flex h-[calc(100vh-150px)] w-full overflow-hidden">
       {/* AI Chat Panel - 1/4 width */}
-      <div className="w-1/4 border-r border-gray-200 bg-white flex flex-col">
-        <div className="p-4 border-b border-gray-200">
+      <div className="w-1/4 border-r border-gray-200/30 bg-white/10 backdrop-blur-md flex flex-col glass-card rounded-l-xl">
+        <div className="p-4 border-b border-gray-200/30">
           <h2 className="text-lg font-semibold">AI Assistant</h2>
         </div>
         
@@ -154,8 +154,8 @@ function createHeader() {
                 <div 
                   className={`max-w-[80%] rounded-lg p-3 ${
                     message.sender === "user" 
-                      ? "bg-primary text-white" 
-                      : "bg-gray-100 text-gray-800"
+                      ? "bg-primary/80 backdrop-blur-sm text-white" 
+                      : "bg-gray-100/80 backdrop-blur-sm text-gray-800"
                   }`}
                 >
                   {message.content}
@@ -166,7 +166,7 @@ function createHeader() {
         </ScrollArea>
         
         {/* Input Area */}
-        <div className="p-4 border-t border-gray-200">
+        <div className="p-4 border-t border-gray-200/30">
           <div className="flex items-center">
             <input
               type="text"
@@ -174,7 +174,7 @@ function createHeader() {
               onChange={(e) => setInputValue(e.target.value)}
               onKeyDown={(e) => e.key === "Enter" && handleSendMessage()}
               placeholder="Type your message..."
-              className="flex-grow p-2 border border-gray-300 rounded-l-md focus:outline-none focus:ring-1 focus:ring-primary"
+              className="flex-grow p-2 border border-gray-300/50 rounded-l-md focus:outline-none focus:ring-1 focus:ring-primary bg-white/20 backdrop-blur-sm"
             />
             <Button 
               onClick={handleSendMessage}
@@ -187,8 +187,8 @@ function createHeader() {
       </div>
       
       {/* Website Preview or Code View - 3/4 width */}
-      <div className="w-3/4 bg-gray-50">
-        <div className="p-4 border-b border-gray-200 bg-white flex justify-between items-center">
+      <div className="w-3/4 bg-gray-50/20 backdrop-blur-md">
+        <div className="p-4 border-b border-gray-200/30 bg-white/10 backdrop-blur-md flex justify-between items-center">
           <div className="flex items-center space-x-3">
             <h2 className="text-lg font-semibold">Website Preview</h2>
             <div className="flex items-center space-x-2">
@@ -197,7 +197,7 @@ function createHeader() {
                 onCheckedChange={setIsCodeView}
                 id="code-view-switch"
               />
-              <label htmlFor="code-view-switch" className="text-sm text-gray-600 cursor-pointer flex items-center">
+              <label htmlFor="code-view-switch" className="text-sm text-gray-200 cursor-pointer flex items-center">
                 {isCodeView ? "Code View" : "Preview"}
                 {isCodeView && <Code size={16} className="ml-1" />}
               </label>
@@ -208,22 +208,22 @@ function createHeader() {
               type="text"
               value={previewUrl}
               onChange={(e) => setPreviewUrl(e.target.value)}
-              className="p-2 text-sm border border-gray-300 rounded-md w-96 focus:outline-none focus:ring-1 focus:ring-primary"
+              className="p-2 text-sm border border-gray-300/50 rounded-md w-96 focus:outline-none focus:ring-1 focus:ring-primary bg-white/20 backdrop-blur-sm"
             />
-            <Button variant="outline" size="sm">Refresh</Button>
+            <Button variant="outline" size="sm" className="bg-white/20 backdrop-blur-sm hover:bg-white/30">Refresh</Button>
           </div>
         </div>
         <div className="h-[calc(100%-60px)] w-full">
           {isCodeView ? (
             <div className="flex h-full">
               {/* File Explorer - VS Code style */}
-              <div className="w-1/5 bg-[#252526] border-r border-[#1e1e1e] overflow-y-auto">
+              <div className="w-1/5 bg-[#252526]/90 backdrop-blur-md border-r border-[#1e1e1e] overflow-y-auto">
                 <div className="p-3 text-white font-medium text-sm uppercase tracking-wider opacity-60">
                   Explorer
                 </div>
                 <div className="text-gray-300">
                   {/* Root folder */}
-                  <div className="px-3 py-1 hover:bg-[#2a2d2e] cursor-pointer">
+                  <div className="px-3 py-1 hover:bg-[#2a2d2e]/80 cursor-pointer">
                     <div className="flex items-center">
                       <FolderTree size={16} className="mr-2 text-[#c5c5c5]" />
                       <span>Project Files</span>
@@ -236,7 +236,7 @@ function createHeader() {
                     .map(file => (
                       <div 
                         key={file} 
-                        className={`pl-5 py-1 cursor-pointer ${activeFile === file ? 'bg-[#37373d]' : 'hover:bg-[#2a2d2e]'}`}
+                        className={`pl-5 py-1 cursor-pointer ${activeFile === file ? 'bg-[#37373d]/80' : 'hover:bg-[#2a2d2e]/80'}`}
                         onClick={() => setActiveFile(file)}
                       >
                         <div className="flex items-center">
@@ -249,7 +249,7 @@ function createHeader() {
                   {/* Components folder */}
                   {Object.keys(files).some(file => file.startsWith('components/')) && (
                     <>
-                      <div className="px-3 py-1 hover:bg-[#2a2d2e] cursor-pointer">
+                      <div className="px-3 py-1 hover:bg-[#2a2d2e]/80 cursor-pointer">
                         <div className="flex items-center">
                           <FolderTree size={16} className="mr-2 text-[#c5c5c5]" />
                           <span>components</span>
@@ -262,7 +262,7 @@ function createHeader() {
                         .map(file => (
                           <div 
                             key={file} 
-                            className={`pl-8 py-1 cursor-pointer ${activeFile === file ? 'bg-[#37373d]' : 'hover:bg-[#2a2d2e]'}`}
+                            className={`pl-8 py-1 cursor-pointer ${activeFile === file ? 'bg-[#37373d]/80' : 'hover:bg-[#2a2d2e]/80'}`}
                             onClick={() => setActiveFile(file)}
                           >
                             <div className="flex items-center">
@@ -277,10 +277,10 @@ function createHeader() {
               </div>
               
               {/* Code Editor - VS Code style */}
-              <div className="w-4/5 h-full bg-[#1e1e1e]">
+              <div className="w-4/5 h-full bg-[#1e1e1e]/90 backdrop-blur-md">
                 {/* Tab bar */}
-                <div className="bg-[#252526] border-b border-[#1e1e1e] flex items-center">
-                  <div className="px-4 py-1.5 bg-[#1e1e1e] text-white flex items-center">
+                <div className="bg-[#252526]/90 border-b border-[#1e1e1e] flex items-center">
+                  <div className="px-4 py-1.5 bg-[#1e1e1e]/80 backdrop-blur-sm text-white flex items-center">
                     <span className="text-sm">{activeFile}</span>
                   </div>
                 </div>
@@ -294,7 +294,7 @@ function createHeader() {
                       margin: 0,
                       padding: '16px',
                       fontSize: '14px',
-                      background: '#1e1e1e',
+                      background: 'rgba(30, 30, 30, 0.9)', 
                       height: '100%',
                       minHeight: '600px'
                     }}
@@ -307,11 +307,13 @@ function createHeader() {
               </div>
             </div>
           ) : (
-            <iframe 
-              src={previewUrl}
-              className="w-full h-full border-none"
-              title="Website Preview"
-            />
+            <div className="h-full w-full bg-white/10 backdrop-blur-sm rounded-br-xl">
+              <iframe 
+                src={previewUrl}
+                className="w-full h-full border-none rounded-br-xl"
+                title="Website Preview"
+              />
+            </div>
           )}
         </div>
       </div>
