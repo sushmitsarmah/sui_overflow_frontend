@@ -11,8 +11,8 @@ interface AnimatedBlobProps {
   blur?: number;
   opacity?: number;
   initialPosition?: {
-    x: number;
-    y: number;
+    x: number | string;
+    y: number | string;
   };
 }
 
@@ -59,7 +59,7 @@ const BackgroundAnimation: React.FC = () => {
     <div className="fixed inset-0 z-0 overflow-hidden pointer-events-none">
       <AnimatedBlob
         color="#6C63FF" // Primary color
-        initialPosition={{ x: '-10%', y: '10%' }}
+        initialPosition={{ x: -10, y: '10%' }}
         size={400}
         blur={100}
         opacity={0.07}
@@ -67,7 +67,7 @@ const BackgroundAnimation: React.FC = () => {
       />
       <AnimatedBlob
         color="#F9A826" // Accent color
-        initialPosition={{ x: '70%', y: '20%' }}
+        initialPosition={{ x: '70%', y: 20 }}
         size={350}
         blur={90}
         opacity={0.05}
@@ -76,7 +76,7 @@ const BackgroundAnimation: React.FC = () => {
       />
       <AnimatedBlob
         color="#6C63FF" // Primary
-        initialPosition={{ x: '40%', y: '60%' }}
+        initialPosition={{ x: '40%', y: 60 }}
         size={500}
         blur={110}
         opacity={0.06}
@@ -85,13 +85,14 @@ const BackgroundAnimation: React.FC = () => {
       />
       <AnimatedBlob
         color="#F9A826" // Accent
-        initialPosition={{ x: '85%', y: '80%' }}
+        initialPosition={{ x: '85%', y: 80 }}
         size={250}
         blur={80}
         opacity={0.04}
         duration={22}
         delay={1.5}
       />
+      <div className="fixed inset-0 bg-gradient-to-b from-gray-900/30 to-gray-800/50 -z-10" />
     </div>
   );
 };
