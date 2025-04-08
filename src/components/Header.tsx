@@ -1,4 +1,3 @@
-
 import { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { motion } from 'framer-motion';
@@ -13,6 +12,7 @@ const Header = () => {
     { name: 'Home', path: '/' },
     { name: 'Build', path: '/prompt' },
     { name: 'Projects', path: '/dashboard' },
+    { name: 'AI Preview', path: '/ai-preview' },
     { name: 'Subscription', path: '/subscription' },
   ];
 

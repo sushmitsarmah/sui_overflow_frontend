@@ -12,6 +12,7 @@ import Landing from "./pages/Landing";
 import Dashboard from "./pages/Dashboard";
 import PromptPage from "./pages/PromptPage";
 import PreviewPage from "./pages/PreviewPage";
+import AIPreviewPage from "./pages/AIPreviewPage";
 import Subscription from "./pages/Subscription";
 import ErrorPage from "./pages/ErrorPage";
 import NotFoundPage from "./pages/NotFoundPage";
@@ -36,6 +37,7 @@ const App = () => (
                   <Route path="/dashboard" element={<Dashboard />} />
                   <Route path="/prompt" element={<PromptPage />} />
                   <Route path="/preview/:projectId" element={<PreviewPage />} />
+                  <Route path="/ai-preview" element={<AIPreviewPage />} />
                   <Route path="/subscription" element={<Subscription />} />
                   <Route path="/error" element={<ErrorPage />} />
                   <Route path="*" element={<NotFoundPage />} />
