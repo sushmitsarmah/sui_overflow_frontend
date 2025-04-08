@@ -3,7 +3,8 @@ import React from "react";
 import { useEffect, useState } from "react";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { Button } from "@/components/ui/button";
-import { Send } from "lucide-react";
+import { Switch } from "@/components/ui/switch";
+import { Send, Code } from "lucide-react";
 
 const AIPreviewPage = () => {
   const [messages, setMessages] = useState<{ sender: "user" | "ai"; content: string }[]>([
@@ -11,6 +12,40 @@ const AIPreviewPage = () => {
   ]);
   const [inputValue, setInputValue] = useState("");
   const [previewUrl, setPreviewUrl] = useState("https://example.com");
+  const [isCodeView, setIsCodeView] = useState(false);
+  
+  // Sample code for demonstration
+  const sampleCode = `
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Example Website</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 20px;
+      line-height: 1.6;
+    }
+    h1 {
+      color: #333;
+    }
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Welcome to Example Website</h1>
+    <p>This is a sample website for demonstration purposes.</p>
+  </div>
+</body>
+</html>
+  `;
 
   const handleSendMessage = () => {
     if (inputValue.trim() === "") return;
@@ -84,10 +119,23 @@ const AIPreviewPage = () => {
         </div>
       </div>
       
-      {/* Website Preview - 3/4 width */}
+      {/* Website Preview or Code View - 3/4 width */}
       <div className="w-3/4 bg-gray-50">
         <div className="p-4 border-b border-gray-200 bg-white flex justify-between items-center">
-          <h2 className="text-lg font-semibold">Website Preview</h2>
+          <div className="flex items-center space-x-3">
+            <h2 className="text-lg font-semibold">Website Preview</h2>
+            <div className="flex items-center space-x-2">
+              <Switch 
+                checked={isCodeView}
+                onCheckedChange={setIsCodeView}
+                id="code-view-switch"
+              />
+              <label htmlFor="code-view-switch" className="text-sm text-gray-600 cursor-pointer flex items-center">
+                {isCodeView ? "Code View" : "Preview"}
+                {isCodeView && <Code size={16} className="ml-1" />}
+              </label>
+            </div>
+          </div>
           <div className="flex items-center space-x-2">
             <input
               type="text"
@@ -99,11 +147,19 @@ const AIPreviewPage = () => {
           </div>
         </div>
         <div className="h-[calc(100%-60px)] w-full">
-          <iframe 
-            src={previewUrl}
-            className="w-full h-full border-none"
-            title="Website Preview"
-          />
+          {isCodeView ? (
+            <ScrollArea className="h-full w-full bg-gray-900 text-white p-4">
+              <pre className="font-mono text-sm">
+                <code>{sampleCode}</code>
+              </pre>
+            </ScrollArea>
+          ) : (
+            <iframe 
+              src={previewUrl}
+              className="w-full h-full border-none"
+              title="Website Preview"
+            />
+          )}
         </div>
       </div>
     </div>
