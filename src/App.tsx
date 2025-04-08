@@ -72,12 +72,12 @@ const App = () => {
       <QueryClientProvider client={queryClient}>
         <TooltipProvider>
           <WalletProvider>
+            <BackgroundAnimation />
+            <div className="stars" style={{ zIndex: -11 }}></div>
             <Toaster />
             <Sonner />
             <BrowserRouter>
               <div className="flex flex-col min-h-screen relative">
-                <BackgroundAnimation />
-                <div className="stars"></div>
                 <Header />
                 <main className="flex-grow">
                   <Routes>

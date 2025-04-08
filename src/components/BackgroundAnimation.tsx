@@ -115,7 +115,7 @@ const ConcentricCircle: React.FC<ConcentricCircleProps> = ({
 
 const BackgroundAnimation: React.FC = () => {
   return (
-    <div className="fixed inset-0 z-0 overflow-hidden pointer-events-none">
+    <div className="fixed inset-0 overflow-hidden pointer-events-none" style={{ zIndex: -10 }}>
       {/* Original blobs */}
       <AnimatedBlob
         color="#6C63FF" // Primary color
@@ -190,7 +190,7 @@ const BackgroundAnimation: React.FC = () => {
         initialPosition={{ x: '40%', y: '20%' }} 
       />
       
-      <div className="fixed inset-0 bg-gradient-to-b from-gray-900/30 to-gray-800/50 -z-10" />
+      <div className="fixed inset-0 bg-gradient-to-b from-gray-900/30 to-gray-800/50" style={{ zIndex: -12 }} />
     </div>
   );
 };
