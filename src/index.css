@@ -87,6 +87,16 @@
     animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
   }
 
+  /* Color change animation */
+  .color-shift {
+    animation: color-shift 10s infinite alternate;
+  }
+
+  /* Concentric circle pulse */
+  .circle-pulse {
+    animation: circle-pulse 4s ease-in-out infinite;
+  }
+
   /* Star animation for background */
   .stars {
     background: transparent;
@@ -135,6 +145,35 @@
     }
     50% {
       opacity: 0.7;
+    }
+  }
+
+  @keyframes color-shift {
+    0% {
+      border-color: rgba(108, 99, 255, 0.5);
+    }
+    25% {
+      border-color: rgba(249, 168, 38, 0.5);
+    }
+    50% {
+      border-color: rgba(79, 209, 197, 0.5);
+    }
+    75% {
+      border-color: rgba(255, 107, 107, 0.5);
+    }
+    100% {
+      border-color: rgba(157, 80, 187, 0.5);
+    }
+  }
+
+  @keyframes circle-pulse {
+    0%, 100% {
+      transform: scale(1);
+      opacity: 0.3;
+    }
+    50% {
+      transform: scale(1.2);
+      opacity: 0.6;
     }
   }
 
