@@ -8,6 +8,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { WalletProvider } from '@suiet/wallet-kit';
 import Header from "./components/Header";
 import Footer from "./components/Footer";
+import BackgroundAnimation from "./components/BackgroundAnimation";
 import Landing from "./pages/Landing";
 import Dashboard from "./pages/Dashboard";
 import PromptPage from "./pages/PromptPage";
@@ -30,6 +31,7 @@ const App = () => (
           <Sonner />
           <BrowserRouter>
             <div className="flex flex-col min-h-screen">
+              <BackgroundAnimation />
               <Header />
               <main className="flex-grow">
                 <Routes>
